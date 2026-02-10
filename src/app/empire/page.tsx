@@ -9,8 +9,8 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'The Mohn Empire — One Ecosystem. One Token. Infinite Possibilities.',
-  description: 'Discover how the Mohn Empire connects 6+ platforms under one $MOHN token. Learn why MohnSters creatures grow in real monetary value as the ecosystem expands.',
+  title: 'The Mohn Empire — 9 Platforms. One Token. Infinite Possibilities.',
+  description: 'Discover how the Mohn Empire connects 9 platforms under one $MOHN token. Learn why MohnSters creatures grow in real monetary value as the ecosystem expands.',
 };
 
 /* ─── Data ─── */
@@ -18,66 +18,107 @@ export const metadata: Metadata = {
 const EMPIRE_PLATFORMS = [
   {
     name: 'MohnSters',
+    codename: 'The Hatchery',
     domain: 'mohnsters.com',
     desc: 'AI-powered collectible creature game. Scan cards, hatch MohnSters, battle, and earn $MOHN.',
     icon: '👾',
     status: 'Building',
     color: 'from-purple-500 to-violet-600',
     users: 'Pre-launch',
+    hasLink: true,
+    href: '/',
   },
   {
     name: 'NeighborTechs',
+    codename: 'Genesis',
     domain: 'neighbortechs.com',
     desc: 'Hyper-local IT marketplace connecting consumers with vetted technicians for affordable repairs.',
     icon: '🔧',
     status: 'Live',
     color: 'from-blue-500 to-indigo-600',
     users: 'Growing',
+    hasLink: true,
+    href: 'https://neighbortechs.com',
   },
   {
     name: 'MohnMint',
-    domain: 'MohnMint.com',
+    codename: 'The Forge',
+    domain: 'mohnmint.com',
     desc: 'The official $MOHN token hub. Wallet management, staking, bridge, and governance portal.',
     icon: '💰',
     status: 'Building',
     color: 'from-yellow-500 to-amber-600',
     users: 'Pre-launch',
+    hasLink: true,
+    href: 'https://mohnmint.com',
   },
   {
     name: 'MohnMatrix',
+    codename: 'Panopticon',
     domain: 'mohnmatrix.com',
     desc: 'Background checks, data verification, and trust scoring for gig economy platforms.',
     icon: '🔍',
     status: 'Live',
     color: 'from-green-500 to-emerald-600',
     users: 'Growing',
+    hasLink: true,
+    href: 'https://mohnmatrix.com',
   },
   {
     name: 'Flaming Social',
+    codename: 'Inferno',
     domain: 'flamingsocialmedia.com',
     desc: 'Full-service social media management, marketing campaigns, and content creation.',
     icon: '🔥',
     status: 'Live',
     color: 'from-orange-500 to-red-600',
     users: 'Active',
+    hasLink: true,
+    href: 'https://flamingsocialmedia.com',
+  },
+  {
+    name: 'MohnServe',
+    codename: 'The Enforcer',
+    domain: 'mohnserve.com',
+    desc: 'Multi-tenant SaaS for legal process serving — GPS-verified affidavits, dispatch, and marketplace.',
+    icon: '⚖️',
+    status: 'Beta',
+    color: 'from-slate-400 to-slate-600',
+    users: 'Beta Testing',
+    hasLink: false,
+  },
+  {
+    name: 'MohnPay',
+    codename: 'The Grid',
+    domain: 'TBD',
+    desc: 'IoT payment & access control OS — laundromats, gate access, vending, and hardware-triggered experiences.',
+    icon: '⚡',
+    status: 'Beta',
+    color: 'from-cyan-500 to-blue-600',
+    users: 'Beta Testing',
+    hasLink: false,
+  },
+  {
+    name: 'MohnMenu',
+    codename: 'The Kitchen',
+    domain: 'mohnmenu.com',
+    desc: 'Commission-free ordering platform for local restaurants and stores. Cards, crypto, and cash.',
+    icon: '🍜',
+    status: 'Building',
+    color: 'from-orange-500 to-red-600',
+    users: 'Pre-launch',
+    hasLink: false,
   },
   {
     name: 'MohnMove',
+    codename: 'Velocity',
     domain: 'mohnmove.com',
     desc: 'Peer-to-peer delivery and moving network. Think Uber meets TaskRabbit for logistics.',
     icon: '🚚',
     status: 'Planned',
     color: 'from-cyan-500 to-teal-600',
     users: 'Coming Soon',
-  },
-  {
-    name: 'MohnMenu',
-    domain: 'MohnMenu.com',
-    desc: 'Commission-free ordering platform for local restaurants and stores. Cards, crypto, and cash.',
-    icon: '🍜',
-    status: 'Building',
-    color: 'from-orange-500 to-red-600',
-    users: 'Pre-launch',
+    hasLink: false,
   },
 ];
 
@@ -237,10 +278,10 @@ export default function EmpirePage() {
               The Ecosystem
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-4 font-[var(--font-heading)]">
-              6 Platforms. <span className="gradient-text-purple">One Token.</span>
+              9 Platforms. <span className="gradient-text-purple">One Token.</span>
             </h2>
             <p className="text-lg text-zinc-500 max-w-3xl mx-auto">
-              Every platform in the Mohn Empire uses $MOHN. Every user on every platform drives demand. Your MohnSters live inside the fastest-growing multi-platform token ecosystem.
+              Every platform in the Mohn Empire uses $MOHN. Every user on every platform drives demand. Your MohnSters live inside the fastest-growing multi-platform token ecosystem. Platforms in beta are identified by codename.
             </p>
           </div>
 
@@ -252,16 +293,24 @@ export default function EmpirePage() {
                   <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
                     platform.status === 'Live'
                       ? 'bg-green-500/10 text-green-400 border border-green-500/20'
-                      : platform.status === 'Building'
+                      : platform.status === 'Beta'
                       ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20'
+                      : platform.status === 'Building'
+                      ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
                       : 'bg-zinc-500/10 text-zinc-400 border border-zinc-500/20'
                   }`}>
                     {platform.status}
                   </span>
                 </div>
                 <h3 className="text-base font-bold text-white mb-1">{platform.name}</h3>
+                <p className="text-[10px] text-purple-400/60 font-mono mb-1">Codename: {platform.codename}</p>
                 <p className="text-xs text-zinc-500 mb-3 leading-relaxed">{platform.desc}</p>
-                <span className="text-[11px] text-zinc-600">{platform.domain}</span>
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] text-zinc-600">{platform.domain}</span>
+                  {platform.hasLink && platform.href && (
+                    <a href={platform.href} target={platform.href.startsWith('http') ? '_blank' : undefined} rel={platform.href.startsWith('http') ? 'noopener noreferrer' : undefined} className="text-[11px] text-purple-400 hover:text-purple-300 transition-colors">Visit →</a>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -372,7 +421,7 @@ export default function EmpirePage() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    { label: '6+ platforms using $MOHN', detail: 'Each new platform adds thousands of users' },
+                    { label: '9 platforms using $MOHN', detail: 'Each new platform adds thousands of users' },
                     { label: 'Real business transactions', detail: 'IT repairs, background checks, social campaigns' },
                     { label: 'Game economy grows', detail: 'More players = more pack purchases = more burns' },
                     { label: 'Cross-platform flow', detail: 'Earned in one app, spent in another — compounding utility' },
