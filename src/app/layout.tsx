@@ -3,6 +3,8 @@ import { Inter, Rajdhani } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Providers } from "@/components/Providers";
+import { EmpireFooterBar } from "@/lib/mohn-empire/components/EmpireFooterBar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -61,9 +63,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${inter.variable} ${rajdhani.variable}`}>
       <body className="bg-[#050507] text-zinc-100 antialiased font-sans">
+        <Providers>
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />
+        <EmpireFooterBar currentPlatform="mohnsters" />
+        </Providers>
       </body>
     </html>
   );
