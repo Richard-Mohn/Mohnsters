@@ -348,9 +348,9 @@ export function VenomHeader() {
         onMouseLeave={handleMouseLeave}
         ref={navRef}
       >
-        <nav className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between" style={{ filter: 'url(#venom-goo)' }}>
-          {/* Logo and Pills Container */}
-          <div className="flex items-center gap-2">
+        <nav className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+          {/* Goo container */}
+          <div className="flex items-center gap-2" style={{ filter: 'url(#venom-goo)' }}>
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0 mr-2">
                 <motion.div
@@ -394,13 +394,21 @@ export function VenomHeader() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
-             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20">
+             <motion.div
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 cursor-pointer"
+                whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              >
               <Coins className="w-3.5 h-3.5 text-yellow-400" />
               <span className="text-xs font-bold text-yellow-400">0 $MOHN</span>
-            </div>
-            <button className="btn-primary text-sm py-2 px-5">
+            </motion.div>
+            <motion.button
+                className="btn-primary text-sm py-2 px-5"
+                whileHover={{ scale: 1.05, filter: "brightness(1.2)" }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            >
               Play Now
-            </button>
+            </motion.button>
           </div>
 
           {/* Mobile menu toggle */}
