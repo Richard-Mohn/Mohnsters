@@ -1,3 +1,4 @@
+// Re-applying the correct header version
 'use client';
 
 import React, { useState, useRef } from 'react';
