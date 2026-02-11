@@ -12,6 +12,7 @@ import { Creature3D } from '@/components/Creature3D';
 import { PackStore } from '@/components/PackStore';
 import { BattlePreview } from '@/components/BattlePreview';
 import { VaultPreview } from '@/components/VaultPreview';
+import AnimatedGradientBackground from '@/components/AnimatedGradientBackground';
 
 /* ─── Data ─── */
 
@@ -132,9 +133,7 @@ export default function Home() {
           HERO SECTION — 3D Creatures
       ═══════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute top-20 left-1/4 w-96 h-96 rounded-full bg-purple-500/10 blur-[120px]" />
-        <div className="absolute bottom-20 right-1/4 w-80 h-80 rounded-full bg-pink-500/8 blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-500/5 blur-[150px]" />
+        <AnimatedGradientBackground />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center py-24">
           {/* Top badge */}
@@ -180,7 +179,7 @@ export default function Home() {
                 key={creature.name}
                 className="flex flex-col items-center"
                 style={{
-                  transform: `translateY(${i % 2 === 0 ? '0' : '-12px'})`,
+                  transform: `translateY(${i % 2 === 0 ? '-36px' : '-48px'})`,
                 }}
               >
                 <Creature3D
