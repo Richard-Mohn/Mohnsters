@@ -482,7 +482,7 @@ export default function Home() {
               Earn <span className="gradient-text-gold">$MOHN</span> Everywhere
             </h2>
             <p className="text-lg text-zinc-500 max-w-2xl mx-auto">
-              $MOHN is the utility token powering the entire Mohn ecosystem. Earn it in MohnSters, spend it across 6 platforms.
+              $MOHN is the utility token powering the entire Mohn ecosystem. Earn it in MohnSters, spend it across 9 platforms.
             </p>
           </div>
 
@@ -505,7 +505,7 @@ export default function Home() {
             <div className="text-4xl mb-4">💰</div>
             <h3 className="text-2xl font-black text-white mb-2">Part of the Mohn Empire</h3>
             <p className="text-sm text-zinc-400 mb-6 max-w-xl mx-auto">
-              $MOHN earned in MohnSters works across all Mohn platforms — NeighborTechs, MohnMatrix, MohnMove, Flaming Social, and MohnMint. One token, infinite possibilities.
+              $MOHN earned in MohnSters works across all Mohn platforms — NeighborTechs, MohnMatrix, Flaming Social, MohnMint, MohnMenu, MohnServe, MohnPay, and MohnMove. One token, infinite possibilities.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
@@ -523,6 +523,62 @@ export default function Home() {
                 <TrendingUp className="w-4 h-4" />
                 Investor Overview
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* ═══════════════════════════════════════════
+          EMPIRE REWARDS — Cross-Platform Bonuses
+      ═══════════════════════════════════════════ */}
+      <section className="relative py-24">
+        <div className="absolute top-1/2 right-0 w-96 h-96 rounded-full bg-emerald-500/5 blur-[120px]" />
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-16">
+            <div className="section-label bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 mx-auto w-fit mb-4">
+              <Crown className="w-3.5 h-3.5" />
+              Empire Rewards
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4 font-[var(--font-heading)]">
+              Play the Game. <span className="gradient-text-gold">Live the Empire.</span>
+            </h2>
+            <p className="text-lg text-zinc-500 max-w-2xl mx-auto">
+              Your MohnSters grow stronger when you use any Mohn platform. Real-world actions unlock rare abilities, evolution paths, and bonus rewards.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto mb-12">
+            {[
+              { platform: 'MohnMenu', action: 'Order $50+ in food', reward: 'Character XP boost + rare item drop', icon: '🍔', color: 'from-orange-500 to-red-600' },
+              { platform: 'NeighborTechs', action: 'Complete an IT job', reward: 'Unlock Tech-type abilities', icon: '🔧', color: 'from-indigo-500 to-blue-600' },
+              { platform: 'MohnServe', action: 'Complete a legal serve', reward: 'Justice achievement + 50 bonus $MOHN', icon: '⚖️', color: 'from-amber-500 to-yellow-600' },
+              { platform: 'MohnPay', action: 'Run a mining node', reward: 'Passive $MOHN generation', icon: '⚡', color: 'from-cyan-500 to-teal-600' },
+              { platform: 'Flaming Social', action: 'Post & engage daily', reward: 'Social streak multiplier', icon: '🔥', color: 'from-red-500 to-pink-600' },
+              { platform: 'GPS Check-In', action: '30-day streak at a location', reward: 'Legendary evolution unlock', icon: '📍', color: 'from-green-500 to-emerald-600' },
+            ].map((item) => (
+              <div key={item.platform} className="glass-card rounded-2xl p-5 group">
+                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform text-xl`}>
+                  {item.icon}
+                </div>
+                <div className="text-xs font-bold text-purple-400 uppercase tracking-wider mb-1">{item.platform}</div>
+                <h4 className="text-sm font-bold text-white mb-1">{item.action}</h4>
+                <p className="text-xs text-zinc-500">{item.reward}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="glass-card rounded-2xl p-6 max-w-3xl mx-auto text-center">
+            <div className="text-3xl mb-3">🧬</div>
+            <h3 className="text-xl font-black text-white mb-2">Cross-Platform Evolution</h3>
+            <p className="text-sm text-zinc-400 max-w-xl mx-auto mb-4">
+              Characters evolve based on your activity across the Mohn Empire. The more platforms you use, the stronger and rarer your MohnSters become. Two players scan the same card — but the one who orders food, completes jobs, and stays active gets the evolved, powered-up version.
+            </p>
+            <div className="flex items-center justify-center gap-4 text-xs text-zinc-500">
+              <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-green-400" /> Activity-Based</span>
+              <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-purple-400" /> Fair for Everyone</span>
+              <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-yellow-400" /> Points → Tokens</span>
             </div>
           </div>
         </div>
@@ -700,14 +756,14 @@ export default function Home() {
                 Why Your MohnSters Could <span className="gradient-text-gold">Grow in Value</span>
               </h2>
               <p className="text-sm text-zinc-500 leading-relaxed mb-6">
-                We don&apos;t make promises — but we&apos;re transparent about the mechanics. As the Mohn Empire grows across 6+ platforms, more users compete for a fixed, deflationary $MOHN supply. Every transaction burns 5%. More platforms live = more demand, less supply. Your creatures and tokens sit at the center of this ecosystem.
+                We don&apos;t make promises — but we&apos;re transparent about the mechanics. As the Mohn Empire grows across 9 platforms, more users compete for a fixed, deflationary $MOHN supply. Every transaction burns 5%. More platforms live = more demand, less supply. Your creatures and tokens sit at the center of this ecosystem.
               </p>
               <div className="space-y-3 mb-6">
                 {[
                   'Fixed 100M supply — no new tokens can ever be minted',
                   '5% deflationary burn on every $MOHN transaction',
                   'Backed by real businesses generating real revenue',
-                  '6+ platforms driving organic token demand',
+                  '9 platforms driving organic token demand',
                 ].map((point) => (
                   <div key={point} className="flex items-start gap-2 text-sm text-zinc-400">
                     <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-1.5 shrink-0" />
@@ -741,8 +797,8 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-3 mb-6">
                 {[
                   { label: 'Market Opp.', value: '$35.9B+' },
-                  { label: 'Revenue Streams', value: '8+' },
-                  { label: 'Platforms', value: '6+' },
+                  { label: 'Revenue Streams', value: '45+' },
+                  { label: 'Platforms', value: '9' },
                   { label: 'Token Model', value: 'Deflationary' },
                 ].map((stat) => (
                   <div key={stat.label} className="bg-white/[0.02] rounded-lg p-3 text-center">

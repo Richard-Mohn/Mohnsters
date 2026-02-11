@@ -5,8 +5,8 @@ import Link from 'next/link';
 import {
   Menu, X, Swords, Package, Lock, ScanLine,
   BookOpen, Coins, BarChart3, Trophy, ChevronDown,
-  Globe, Shield, Mail, Download,
-  Cpu, Gamepad2, Crown, Sparkles,
+  Globe, Shield, Mail, Download, Wallet,
+  Cpu, Gamepad2, Crown, Sparkles, Rocket,
   Building2, CircuitBoard,
   Truck, UtensilsCrossed, Flame, Search,
   Smartphone, Monitor, Wrench,
@@ -24,6 +24,8 @@ interface NavItem {
   desc?: string;
   badge?: string;
   external?: boolean;
+  ticker?: string;
+  brandColor?: string;
 }
 
 interface NavGroup {
@@ -35,6 +37,7 @@ interface NavDropdown {
   label: string;
   icon?: React.ElementType;
   groups: NavGroup[];
+  gridMode?: boolean;
   featured?: {
     title: string;
     desc: string;
@@ -70,6 +73,7 @@ const DROPDOWNS: NavDropdown[] = [
         items: [
           { label: 'The Vault', href: '/vault', icon: Lock, desc: 'Insured card storage + yield' },
           { label: '$MOHN Tokenomics', href: '/tokenomics', icon: Coins, desc: 'Supply, burns, and staking' },
+          { label: 'Roadmap', href: '/roadmap', icon: Rocket, desc: 'Game development phases' },
         ],
       },
     ],
@@ -107,6 +111,61 @@ const DROPDOWNS: NavDropdown[] = [
           { label: 'Project Enforcer', href: '#', icon: Shield, desc: 'Legal SaaS platform', badge: 'Beta' },
           { label: 'Project Grid', href: '#', icon: CircuitBoard, desc: 'IoT payment & access control', badge: 'Beta' },
           { label: 'Project Velocity', href: '#', icon: Truck, desc: 'P2P delivery & moving', badge: 'Planned' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Crypto',
+    icon: Coins,
+    gridMode: true,
+    groups: [
+      {
+        label: 'Mohn Empire',
+        items: [
+          { label: '$MOHN', href: '/tokenomics', icon: Coins, ticker: 'M', brandColor: '#8B5CF6', desc: 'MOHN · Utility Token' },
+        ],
+      },
+      {
+        label: 'Major Cryptocurrencies',
+        items: [
+          { label: 'Bitcoin', href: '#', icon: Coins, ticker: '₿', brandColor: '#F7931A', desc: 'BTC · Digital Gold' },
+          { label: 'Ethereum', href: '#', icon: Coins, ticker: 'Ξ', brandColor: '#627EEA', desc: 'ETH · Smart Contracts' },
+          { label: 'Solana', href: '#', icon: Coins, ticker: 'S', brandColor: '#14F195', desc: 'SOL · High-Speed DeFi' },
+          { label: 'Dogecoin', href: '#', icon: Coins, ticker: 'Ð', brandColor: '#C3A634', desc: 'DOGE · Community Currency' },
+          { label: 'XRP', href: '#', icon: Coins, ticker: 'X', brandColor: '#23292F', desc: 'XRP · Cross-Border' },
+          { label: 'Cardano', href: '#', icon: Coins, ticker: '₳', brandColor: '#0033AD', desc: 'ADA · Proof of Stake' },
+          { label: 'Polygon', href: '#', icon: Coins, ticker: 'P', brandColor: '#8247E5', desc: 'POL · Ethereum L2' },
+          { label: 'Litecoin', href: '#', icon: Coins, ticker: 'Ł', brandColor: '#345D9D', desc: 'LTC · Digital Silver' },
+          { label: 'Chainlink', href: '#', icon: Coins, ticker: '◆', brandColor: '#2A5ADA', desc: 'LINK · Oracle Network' },
+          { label: 'Avalanche', href: '#', icon: Coins, ticker: 'A', brandColor: '#E84142', desc: 'AVAX · Subnet Architecture' },
+          { label: 'BNB', href: '#', icon: Coins, ticker: 'B', brandColor: '#F3BA2F', desc: 'BNB · Exchange Chain' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Wallets',
+    icon: Wallet,
+    gridMode: true,
+    groups: [
+      {
+        label: 'Mohn Empire',
+        items: [
+          { label: 'MohnMint Wallet', href: 'https://mohnmint.com/wallet', icon: Wallet, ticker: 'M', brandColor: '#8B5CF6', desc: 'All-in-one Empire wallet', external: true },
+        ],
+      },
+      {
+        label: 'Popular Wallets',
+        items: [
+          { label: 'MetaMask', href: '#', icon: Wallet, ticker: '🦊', brandColor: '#E8831D', desc: 'Browser & Mobile' },
+          { label: 'Trust Wallet', href: '#', icon: Wallet, ticker: 'T', brandColor: '#3375BB', desc: 'Mobile Multi-Chain' },
+          { label: 'Phantom', href: '#', icon: Wallet, ticker: 'P', brandColor: '#AB9FF2', desc: 'Solana & Multi-Chain' },
+          { label: 'Coinbase Wallet', href: '#', icon: Wallet, ticker: 'C', brandColor: '#0052FF', desc: 'Self-Custody' },
+          { label: 'Ledger', href: '#', icon: Wallet, ticker: 'L', brandColor: '#FF5500', desc: 'Hardware Cold Storage' },
+          { label: 'Exodus', href: '#', icon: Wallet, ticker: 'E', brandColor: '#1F2937', desc: 'Desktop & Mobile' },
+          { label: 'Brave Wallet', href: '#', icon: Wallet, ticker: '🦁', brandColor: '#FB542B', desc: 'Built into Brave' },
+          { label: 'Rabby', href: '#', icon: Wallet, ticker: 'R', brandColor: '#7084FF', desc: 'Multi-Chain Browser' },
         ],
       },
     ],
@@ -171,6 +230,7 @@ const MOBILE_LINKS = [
   { href: '/vault', label: 'Vault', icon: Lock },
   { href: '/tokenomics', label: '$MOHN', icon: Coins },
   { href: '/empire', label: 'Empire', icon: Globe },
+  { href: '/roadmap', label: 'Roadmap', icon: Rocket },
   { href: '/investors', label: 'Investors', icon: Trophy },
 ];
 
@@ -310,6 +370,108 @@ function DesktopDropdown({ dropdown }: { dropdown: NavDropdown }) {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   Grid Dropdown Component (Crypto & Wallets)
+   ═══════════════════════════════════════════════════════════ */
+
+function GridDropdown({ dropdown }: { dropdown: NavDropdown }) {
+  const [open, setOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleEnter = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
+
+  const handleLeave = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 200);
+  };
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    if (open) window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [open]);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <button
+        className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm transition-all ${
+          open ? 'text-white bg-white/5' : 'text-zinc-400 hover:text-white hover:bg-white/5'
+        }`}
+        onClick={() => setOpen(!open)}
+      >
+        {dropdown.icon && <dropdown.icon className="w-4 h-4" />}
+        {dropdown.label}
+        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+      </button>
+
+      <div
+        className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50 transition-all duration-200 ${
+          open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
+        }`}
+      >
+        <div className="w-[540px] rounded-2xl bg-[#0c0c14] border border-white/10 shadow-2xl shadow-black/60 overflow-hidden p-5">
+          {dropdown.groups.map((group) => (
+            <div key={group.label} className="mb-5 last:mb-0">
+              <h4 className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest mb-3 px-1">{group.label}</h4>
+              <div className={`grid ${group.items.length === 1 ? 'grid-cols-1' : 'grid-cols-3'} gap-2`}>
+                {group.items.map((item) => {
+                  const isHighlight = group.items.length === 1;
+                  const Comp = item.external ? 'a' : Link;
+                  const extraProps = item.external
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {};
+                  return (
+                    <Comp
+                      key={item.label}
+                      href={item.href}
+                      {...(extraProps as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+                      className={`flex items-center gap-2.5 px-3 py-3 rounded-xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20 ${
+                        isHighlight
+                          ? 'bg-gradient-to-r from-purple-500/10 to-violet-500/5 border-purple-500/20 hover:border-purple-500/40'
+                          : 'bg-white/[0.02] border-white/[0.05] hover:bg-white/[0.06] hover:border-white/10'
+                      }`}
+                      onClick={() => setOpen(false)}
+                    >
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm shrink-0"
+                        style={{
+                          backgroundColor: (item.brandColor || '#8B5CF6') + '18',
+                          color: item.brandColor || '#8B5CF6',
+                          textShadow: `0 0 12px ${item.brandColor || '#8B5CF6'}40`,
+                        }}
+                      >
+                        {item.ticker || item.label[0]}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-sm font-semibold text-zinc-200 truncate">{item.label}</div>
+                        {item.desc && <div className="text-[10px] text-zinc-600 truncate">{item.desc}</div>}
+                      </div>
+                      {isHighlight && (
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-purple-500/15 text-purple-400 shrink-0">
+                          Ours
+                        </span>
+                      )}
+                      {item.external && <ExternalLink className="w-3 h-3 text-zinc-600 shrink-0" />}
+                    </Comp>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
    Main Navbar
    ═══════════════════════════════════════════════════════════ */
 
@@ -340,9 +502,11 @@ export function Navbar() {
 
         {/* Desktop Nav — Mega Menus */}
         <div className="hidden lg:flex items-center gap-0.5">
-          {DROPDOWNS.map((d) => (
-            <DesktopDropdown key={d.label} dropdown={d} />
-          ))}
+          {DROPDOWNS.map((d) =>
+            d.gridMode
+              ? <GridDropdown key={d.label} dropdown={d} />
+              : <DesktopDropdown key={d.label} dropdown={d} />
+          )}
         </div>
 
         {/* Desktop CTA */}
@@ -433,6 +597,69 @@ export function Navbar() {
                   <div className="px-4 py-2.5 text-sm text-zinc-500 flex items-center gap-2">
                     <Cpu className="w-4 h-4" /> ESP32 Miner <span className="text-[10px] bg-zinc-800 text-zinc-500 px-1.5 py-0.5 rounded-full ml-auto">Soon</span>
                   </div>
+                </div>
+              </div>
+
+              {/* Crypto */}
+              <div className="mt-6 pt-6 border-t border-white/5">
+                <h4 className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest mb-3 px-4">Crypto</h4>
+                <div className="space-y-1">
+                  {[
+                    { name: '$MOHN', ticker: 'M', color: '#8B5CF6', href: '/tokenomics' },
+                    { name: 'Bitcoin', ticker: '₿', color: '#F7931A' },
+                    { name: 'Ethereum', ticker: 'Ξ', color: '#627EEA' },
+                    { name: 'Solana', ticker: 'S', color: '#14F195' },
+                    { name: 'Dogecoin', ticker: 'Ð', color: '#C3A634' },
+                  ].map(c => (
+                    c.href ? (
+                      <Link
+                        key={c.name}
+                        href={c.href}
+                        className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        <span className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold" style={{ backgroundColor: c.color + '20', color: c.color }}>{c.ticker}</span>
+                        {c.name}
+                      </Link>
+                    ) : (
+                      <div key={c.name} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-zinc-500">
+                        <span className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold" style={{ backgroundColor: c.color + '20', color: c.color }}>{c.ticker}</span>
+                        {c.name}
+                      </div>
+                    )
+                  ))}
+                </div>
+              </div>
+
+              {/* Wallets */}
+              <div className="mt-6 pt-6 border-t border-white/5">
+                <h4 className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest mb-3 px-4">Wallets</h4>
+                <div className="space-y-1">
+                  {[
+                    { name: 'MohnMint Wallet', ticker: 'M', color: '#8B5CF6', href: 'https://mohnmint.com/wallet' },
+                    { name: 'MetaMask', ticker: '🦊', color: '#E8831D' },
+                    { name: 'Phantom', ticker: 'P', color: '#AB9FF2' },
+                    { name: 'Coinbase Wallet', ticker: 'C', color: '#0052FF' },
+                  ].map(w => (
+                    w.href ? (
+                      <a
+                        key={w.name}
+                        href={w.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-zinc-400 hover:text-white hover:bg-white/5 transition-all"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        <span className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold" style={{ backgroundColor: w.color + '20', color: w.color }}>{w.ticker}</span>
+                        {w.name}
+                      </a>
+                    ) : (
+                      <div key={w.name} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-zinc-500">
+                        <span className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold" style={{ backgroundColor: w.color + '20', color: w.color }}>{w.ticker}</span>
+                        {w.name}
+                      </div>
+                    )
+                  ))}
                 </div>
               </div>
 
