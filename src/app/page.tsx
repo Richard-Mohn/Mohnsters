@@ -12,7 +12,7 @@ import { Creature3D } from '@/components/Creature3D';
 import { PackStore } from '@/components/PackStore';
 import { BattlePreview } from '@/components/BattlePreview';
 import { VaultPreview } from '@/components/VaultPreview';
-import AnimatedGradientBackground from '@/components/AnimatedGradientBackground';
+
 
 /* ─── Data ─── */
 
@@ -127,13 +127,13 @@ const TRUST_ITEMS = [
 
 export default function Home() {
   return (
-    <div className="relative bg-grid-pattern">
+    <div className="relative">
 
       {/* ═══════════════════════════════════════════
           HERO SECTION — 3D Creatures
       ═══════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <AnimatedGradientBackground />
+
 
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center py-24">
           {/* Top badge */}

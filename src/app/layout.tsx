@@ -5,6 +5,7 @@ import { VenomHeader } from "@/components/VenomHeader";
 import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { EmpireFooterBar } from "@/lib/mohn-empire/components/EmpireFooterBar";
+import AnimatedGradientBackground from "@/components/AnimatedGradientBackground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -64,10 +65,12 @@ export default function RootLayout({
     <html lang="en" className={`dark ${inter.variable} ${rajdhani.variable}`}>
       <body className="bg-[#050507] text-zinc-100 antialiased font-sans">
         <Providers>
-        <VenomHeader />
-        <main className="pt-16">{children}</main>
-        <Footer />
-        <EmpireFooterBar currentPlatform="mohnsters" />
+          <AnimatedGradientBackground />
+          <div className="fixed inset-0 w-full h-full bg-grid-pattern z-[-10]" />
+          <VenomHeader />
+          <main className="pt-20 relative z-10">{children}</main>
+          <Footer />
+          <EmpireFooterBar currentPlatform="mohnsters" />
         </Providers>
       </body>
     </html>
