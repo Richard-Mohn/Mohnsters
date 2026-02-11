@@ -1,0 +1,32 @@
+# Flutter
+app/.dart_tool/
+app/.idea/
+app/build/
+app/android/.gradle/
+app/ios/Pods/
+app/ios/.symlinks/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+
+# Next.js marketing site
+marketing-site/.next/
+marketing-site/node_modules/
+
+# ESP32
+esp32-firmware/.pio/
+esp32-firmware/.vscode/
+
+# Build output
+build/
+
+# IDE
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+tmp/
+.next/
