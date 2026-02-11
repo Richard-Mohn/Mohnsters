@@ -11,7 +11,6 @@ const AnimatedGradientBackground = () => {
       new Granim({
         element: canvasRef.current,
         name: 'granim',
-        opacity: [1, 1],
         states: {
           'default-state': {
             gradients: [
