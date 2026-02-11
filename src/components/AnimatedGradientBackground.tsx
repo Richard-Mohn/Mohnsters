@@ -14,8 +14,8 @@ const AnimatedGradientBackground = () => {
         states: {
           'default-state': {
             gradients: [
-              ['#0f0c29', '#302b63', '#24243e'],
-              ['#302b63', '#24243e', '#0f0c29']
+              ['#050507', '#08080a', '#050507'],
+              ['#08080a', '#050507', '#08080a']
             ],
             transitionSpeed: 7000
           }
